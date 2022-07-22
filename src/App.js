@@ -4,9 +4,10 @@ import Style from './Components/style';
 import Inline from './Components/Inline';
 import  './Components/mystyle.css';
 import {useState} from 'react';
-
+//import DateTimePicker from 'react-datetime-picker';
 
 function App() {
+  const [value, onChange] = useState();
   const[dropdown,setdropdown]=useState("Select Option");
 const[checkbox,setcheckbox]=useState("false");
 const[radio,setradio]=useState("Select Option");
@@ -49,6 +50,10 @@ const[radio,setradio]=useState("Select Option");
   <input type="radio" checked={radio==="Banana"} value="Banana" onchange={(e)=>{setradio(e.target.value)}}/>
   <label>Mango</label>
   <input type="radio" checked={radio==="Mango"} value="Mango" onchange={(e)=>{setradio(e.target.value)}}/>
+
+  <br></br>
+<h1> Today Date is {value}</h1>
+  <input type="date" onChange={(e)=>{onChange(e.target.value)}} />
 </form>
     </div>
   );
