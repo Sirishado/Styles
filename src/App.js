@@ -4,6 +4,7 @@ import Style from './Components/style';
 import Inline from './Components/Inline';
 import  './Components/mystyle.css';
 import {useState} from 'react';
+import State from './Components/state';
 //import DateTimePicker from 'react-datetime-picker';
 
 function App() {
@@ -11,11 +12,43 @@ function App() {
   const[dropdown,setdropdown]=useState("Select Option");
 const[checkbox,setcheckbox]=useState("false");
 const[radio,setradio]=useState("Select Option");
+const list = [
+  "Banana",
+  "Apple",
+  "Orange",
+  "Mango",
+  "Pineapple",
+  "Watermelon"
+];
+
+const [filterList, setFilterList] = useState(list);
+
+const handleSearch = (event) => {
+
+  if (event.target.value === "") {
+    setFilterList(list);
+    return;
+  }
+  const filteredValues = list.filter(
+    (item) =>
+      item.toLowerCase().indexOf(event.target.value.toLowerCase()) !== -1
+  );
+  setFilterList(filteredValues);
+};
   return (
     <div className="App">
 <Style  Primary="false" />
 <Inline/>
+<State/>
 <form>
+<div>
+        Search: <input name="query" type="text" onChange={handleSearch} />
+      </div>
+      {filterList &&
+        filterList.map((item, index) => (
+          <div key={index}>{item}</div> //Display each item
+        ))}
+        <br></br>
   <select>
   <option>Select Option</option>
     <option>Yes</option>
@@ -54,6 +87,15 @@ const[radio,setradio]=useState("Select Option");
   <br></br>
 <h1> Today Date is {value}</h1>
   <input type="date" onChange={(e)=>{onChange(e.target.value)}} />
+
+{/* <div classname="colorBlock" style ={{width:100,height:100,background:this.state.blockcolor}}></div>
+<button onClick={()=>this.setstate({blockcolor:'blue'})}>Blue</button>
+<button onClick={()=>this.setstate({blockcolor:'green'})}>Green</button>
+<button onClick={()=>this.setstate({blockcolor:'red'})}>Red</button> */}
+
+<br></br>
+
+
 </form>
     </div>
   );
