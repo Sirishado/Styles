@@ -5,6 +5,7 @@ import Inline from './Components/Inline';
 import  './Components/mystyle.css';
 import {useState} from 'react';
 import State from './Components/state';
+import Multi from './Components/Multi';
 //import DateTimePicker from 'react-datetime-picker';
 
 function App() {
@@ -40,6 +41,7 @@ const handleSearch = (event) => {
 <Style  Primary="false" />
 <Inline/>
 <State/>
+<Multi/>
 <form>
 <div>
         Search: <input name="query" type="text" onChange={handleSearch} />
